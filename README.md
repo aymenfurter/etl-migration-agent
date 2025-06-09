@@ -74,8 +74,6 @@ graph TD
 
 ## Prompts / Sample Migration Steps
 
-This section provides quick-reference prompts for common migration tasks. For detailed documentation and file descriptions, see [`test_data/PROMPT.md`](test_data/PROMPT.md).
-
 ### 1. File Order Alignment
 ```markdown
 call #order_consistency_agent
