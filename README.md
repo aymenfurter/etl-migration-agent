@@ -1,4 +1,5 @@
 <div align="center">
+<img src="assets/logo.png" alt="ETL Migration Agent Logo" width="200">
 <h1>ETL Migration Agent</h1>
 <p>GitHub Copilot for Migrating Legacy ETL Scripts 🤯</p>
 
@@ -13,6 +14,10 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 **Sample Output**: See [`test_data/transformation_script.py`](test_data/transformation_script.py) for an example of generated Python code that migrates legacy SQL ETL logic to pandas operations.
 
 ## Architecture
+
+<div align="center">
+<img src="assets/architecture.png" alt="ETL Migration Agent Architecture" width="800">
+</div>
 
 ### Core Services
 - **Azure AI Foundry**: Provides access to LLMs (o3, gpt-4.1, gpt-4o) for language understanding and code generation
@@ -29,19 +34,33 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 | Code Refinement Agent | Refine Python code based on legacy ETL knowledge and current output. | Azure AI Foundry | `gpt-4.1` (configurable) |
 
 ### Migration Workflow
-```mermaid
-graph TD
-    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
-    B -->|Reordered Files| C[Code Bootstrap Agent]
-    C -->|Initial Python Code| D[Iterative Refinement]
-    D --> E{Analysis Method}
-    E -->|Simple Differences| F[Terminal diff]
-    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
-    E -->|Legacy Logic Needed| H[Code Refinement Agent]
-    F & G & H --> I{Issues Resolved?}
-    I -->|No| D
-    I -->|Yes| J[Final Python Code]
-```
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<div style="flex: 1;">
+
+The ETL Migration Agent follows a systematic approach to transform legacy ETL code into modern Python implementations:
+
+1. **Order Alignment** 
+   - Order Consistency Agent ensures both source and target files have matching row order
+   - Multiple models generate ordering solutions
+   - Built-in LLM judge selects best ordering
+
+2. **Initial Code Generation**
+   - Code Bootstrap Agent analyzes legacy ETL and CSV context
+   - Generates initial Python transformation code
+   - Uses reasoning model with full context
+
+3. **Iterative Refinement**
+   Choose the appropriate method based on issues:
+   - **Direct Comparison**: Use terminal diff for simple mismatches
+   - **Row Analysis**: Use Rowlevel Analyzer Agent when row mappings are complex
+   - **Logic Refinement**: Use Code Refinement Agent when legacy ETL knowledge is needed
+
+</div>
+<div style="flex: 0 0 200px;">
+<img src="assets/teacher.png" alt="Teacher Cat explaining the process" width="200">
+</div>
+</div>
 
 #### Migration Process
 1. **Order Alignment** 
@@ -75,6 +94,17 @@ graph TD
 | `LOG_LEVEL` | Logging level | `INFO` |
 
 ## Prompts / Sample Migration Steps
+
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+<div style="flex: 0 0 200px;">
+<img src="assets/tryout.png" alt="Cat ready to try out the migration process" width="200">
+</div>
+<div style="flex: 1;">
+
+Ready to get your paws dirty with ETL migration? Follow these step-by-step prompts to transform your legacy code into modern Python! Each step builds on the previous one, so work through them in order for the best results.
+
+</div>
+</div>
 
 ### 1. File Order Alignment
 ```markdown
