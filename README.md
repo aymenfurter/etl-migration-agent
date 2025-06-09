@@ -27,6 +27,7 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 ### Tool and Agent Overview
 <div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
 </div>
+
 | Tool/Agent | Purpose | Implementation | Models Used |
 |------------|---------|----------------|-------------|
 | Order Consistency Agent | Ensures source and target files have matching row orders + Uses LLM judge to select best ordering from multiple models | Azure AI Agent Service + Code Interpreter + LLM Judge | `gpt-4`, `gpt-4.1` |
