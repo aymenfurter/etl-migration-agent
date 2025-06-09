@@ -14,7 +14,6 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 **Sample Output**: See [`test_data/transformation_script.py`](test_data/transformation_script.py) for an example of generated Python code that migrates legacy SQL ETL logic to pandas operations.
 
 ## Architecture
-
 <div align="center">
 <img src="assets/architecture.png" alt="ETL Migration Agent Architecture" width="800">
 </div>
@@ -25,8 +24,6 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 - **MCP Server**: Enables integration with GitHub Copilot by exposing tools through the Model Context Protocol
 
 ### Tool and Agent Overview
-<div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
-</div>
 
 | Tool/Agent | Purpose | Implementation | Models Used |
 |------------|---------|----------------|-------------|
@@ -36,26 +33,9 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 | Code Refinement Agent | Refine Python code based on legacy ETL knowledge and current output. | Azure AI Foundry | `gpt-4.1` (configurable) |
 
 
-
-
-
-## Configuration Options
-| Environment Variable | Description | Default |
-|---------------------|-------------|----------|
-| `AZURE_OPENAI_API_KEY` | Azure OpenAI API key | Required |
-| `AZURE_OPENAI_ENDPOINT` | Azure OpenAI endpoint URL | Required |
-| `AZURE_OPENAI_DEPLOYMENT_NAME` | OpenAI model deployment name | `o3` |
-| `AZURE_OPENAI_API_VERSION` | API version | `2024-12-01-preview` |
-| `MODEL_DEPLOYMENTS` | Comma-separated list of models | `gpt-4,gpt-4o-dz,gpt-4.1,gpt-4o` |
-| `REFINEMENT_MODEL` | Model for code refinement | `gpt-4.1` |
-| `BEST_OUTPUT_SELECTOR_MODEL` | Model for selecting best output | `gpt-4.1` |
-| `LEGACY_ETL_CODE_DESCRIPTION` | Type of legacy code | e.g. `SQL` |
-| `PROJECT_ENDPOINT` | Azure AI Agents project endpoint | Required |
-| `LOG_LEVEL` | Logging level | `INFO` |
-
-## Prompts / Sample Migration Steps
-Ready to get your paws dirty with ETL migration? Follow these step-by-step prompts to transform your legacy code into modern Python! Each step builds on the previous one, so work through them in order for the best results.
-
+## Migration Steps with Prompts
+<div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
+</div>
 
 ### 1. File Order Alignment
 ```markdown
@@ -164,26 +144,25 @@ python3 -c "import csv; a = list(csv.reader(open('output.csv'))); b = list(csv.r
 
 You may need to diff more lines as you get closer to the final output.
 
-# Step by Step Migration Workflow
-```mermaid
-graph TD
-    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
-    B -->|Reordered Files| C[Code Bootstrap Agent]
-    C -->|Initial Python Code| D[Iterative Refinement]
-    D --> E{Analysis Method}
-    E -->|Simple Differences| F[Terminal diff]
-    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
-    E -->|Legacy Logic Needed| H[Code Refinement Agent]
-    F & G & H --> I{Issues Resolved?}
-    I -->|No| D
-    I -->|Yes| J
-```
-
 # Setup
 ## Prerequisites
 - Python 3.11+
 - Azure OpenAI API credentials
 - Azure AI Agents Project endpoint
+
+## Configuration Options
+| Environment Variable | Description | Default |
+|---------------------|-------------|----------|
+| `AZURE_OPENAI_API_KEY` | Azure OpenAI API key | Required |
+| `AZURE_OPENAI_ENDPOINT` | Azure OpenAI endpoint URL | Required |
+| `AZURE_OPENAI_DEPLOYMENT_NAME` | OpenAI model deployment name | `o3` |
+| `AZURE_OPENAI_API_VERSION` | API version | `2024-12-01-preview` |
+| `MODEL_DEPLOYMENTS` | Comma-separated list of models | `gpt-4,gpt-4o-dz,gpt-4.1,gpt-4o` |
+| `REFINEMENT_MODEL` | Model for code refinement | `gpt-4.1` |
+| `BEST_OUTPUT_SELECTOR_MODEL` | Model for selecting best output | `gpt-4.1` |
+| `LEGACY_ETL_CODE_DESCRIPTION` | Type of legacy code | e.g. `SQL` |
+| `PROJECT_ENDPOINT` | Azure AI Agents project endpoint | Required |
+| `LOG_LEVEL` | Logging level | `INFO` |
 
 ## Quick Start
 1. Create and activate a virtual environment:
@@ -271,5 +250,21 @@ Add this configuration to your VS Code settings (mcp.json):
 }
 ```
 
-## License
+# Detailed Dev Workflow
+```mermaid
+graph TD
+    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
+    B -->|Reordered Files| C[Code Bootstrap Agent]
+    C -->|Initial Python Code| D[Iterative Refinement]
+    D --> E{Analysis Method}
+    E -->|Simple Differences| F[Terminal diff]
+    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
+    E -->|Legacy Logic Needed| H[Code Refinement Agent]
+    F & G & H --> I{Issues Resolved?}
+    I -->|No| D
+    I -->|Yes| J
+```
+
+
+# License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
