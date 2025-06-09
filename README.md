@@ -34,20 +34,6 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 | Code Refinement Agent | Refine Python code based on legacy ETL knowledge and current output. | Azure AI Foundry | `gpt-4.1` (configurable) |
 
 
-### Migration Workflow
-```mermaid
-graph TD
-    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
-    B -->|Reordered Files| C[Code Bootstrap Agent]
-    C -->|Initial Python Code| D[Iterative Refinement]
-    D --> E{Analysis Method}
-    E -->|Simple Differences| F[Terminal diff]
-    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
-    E -->|Legacy Logic Needed| H[Code Refinement Agent]
-    F & G & H --> I{Issues Resolved?}
-    I -->|No| D
-    I -->|Yes| J
-```
 
 <div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
 </div>
@@ -177,9 +163,24 @@ python3 -c "import csv; a = list(csv.reader(open('output.csv'))); b = list(csv.r
 
 You may need to diff more lines as you get closer to the final output.
 
+# Step by Step Migration Workflow
+```mermaid
+graph TD
+    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
+    B -->|Reordered Files| C[Code Bootstrap Agent]
+    C -->|Initial Python Code| D[Iterative Refinement]
+    D --> E{Analysis Method}
+    E -->|Simple Differences| F[Terminal diff]
+    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
+    E -->|Legacy Logic Needed| H[Code Refinement Agent]
+    F & G & H --> I{Issues Resolved?}
+    I -->|No| D
+    I -->|Yes| J
+```
+
 # Setup
 ## Prerequisites
-- Python 3.8+
+- Python 3.11+
 - Azure OpenAI API credentials
 - Azure AI Agents Project endpoint
 
