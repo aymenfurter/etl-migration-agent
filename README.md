@@ -33,6 +33,22 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 | Rowlevel Analyzer Agent | Comparison of output differences + Uses LLM judge to identify matching rows across files | Azure AI Agent Service + Code Interpreter + LLM Judge | Multiple model parallel processing |
 | Code Refinement Agent | Refine Python code based on legacy ETL knowledge and current output. | Azure AI Foundry | `gpt-4.1` (configurable) |
 
+
+### Migration Workflow
+```mermaidAdd commentMore actions
+graph TD
+    A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
+    B -->|Reordered Files| C[Code Bootstrap Agent]
+    C -->|Initial Python Code| D[Iterative Refinement]
+    D --> E{Analysis Method}
+    E -->|Simple Differences| F[Terminal diff]
+    E -->|Complex Row Mappings| G[Rowlevel Analyzer Agent]
+    E -->|Legacy Logic Needed| H[Code Refinement Agent]
+    F & G & H --> I{Issues Resolved?}
+    I -->|No| D
+    I -->|Yes| J[Final Python Code]
+```
+
 <div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
 </div>
 
