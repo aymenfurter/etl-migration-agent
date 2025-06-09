@@ -46,7 +46,7 @@ graph TD
     E -->|Legacy Logic Needed| H[Code Refinement Agent]
     F & G & H --> I{Issues Resolved?}
     I -->|No| D
-    I -->|Yes| J[Final Python Code]
+    I -->|Yes| J
 ```
 
 <div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
