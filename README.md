@@ -33,33 +33,7 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 | Rowlevel Analyzer Agent | Comparison of output differences + Uses LLM judge to identify matching rows across files | Azure AI Agent Service + Code Interpreter + LLM Judge | Multiple model parallel processing |
 | Code Refinement Agent | Refine Python code based on legacy ETL knowledge and current output. | Azure AI Foundry | `gpt-4.1` (configurable) |
 
-### Migration Workflow
-
-<div style="display: flex; align-items: flex-start; gap: 20px;">
-<div style="flex: 1;">
-
-The ETL Migration Agent follows a systematic approach to transform legacy ETL code into modern Python implementations:
-
-1. **Order Alignment** 
-   - Order Consistency Agent ensures both source and target files have matching row order
-   - Multiple models generate ordering solutions
-   - Built-in LLM judge selects best ordering
-
-2. **Initial Code Generation**
-   - Code Bootstrap Agent analyzes legacy ETL and CSV context
-   - Generates initial Python transformation code
-   - Uses reasoning model with full context
-
-3. **Iterative Refinement**
-   Choose the appropriate method based on issues:
-   - **Direct Comparison**: Use terminal diff for simple mismatches
-   - **Row Analysis**: Use Rowlevel Analyzer Agent when row mappings are complex
-   - **Logic Refinement**: Use Code Refinement Agent when legacy ETL knowledge is needed
-
-</div>
-<div style="flex: 0 0 200px;">
-<img src="assets/teacher.png" alt="Teacher Cat explaining the process" width="200">
-</div>
+<div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
 </div>
 
 #### Migration Process
@@ -94,17 +68,8 @@ The ETL Migration Agent follows a systematic approach to transform legacy ETL co
 | `LOG_LEVEL` | Logging level | `INFO` |
 
 ## Prompts / Sample Migration Steps
-
-<div style="display: flex; align-items: flex-start; gap: 20px;">
-<div style="flex: 0 0 200px;">
-<img src="assets/tryout.png" alt="Cat ready to try out the migration process" width="200">
-</div>
-<div style="flex: 1;">
-
 Ready to get your paws dirty with ETL migration? Follow these step-by-step prompts to transform your legacy code into modern Python! Each step builds on the previous one, so work through them in order for the best results.
 
-</div>
-</div>
 
 ### 1. File Order Alignment
 ```markdown
