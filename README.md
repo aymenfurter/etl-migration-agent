@@ -36,23 +36,6 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 <div align="center"><img src="assets/migration_process.png" alt="Teacher Cat explaining the process">
 </div>
 
-#### Migration Process
-1. **Order Alignment** 
-   - Order Consistency Agent ensures both source and target files have matching row order
-   - Multiple models generate ordering solutions
-   - Built-in LLM judge selects best ordering
-
-2. **Initial Code Generation**
-   - Code Bootstrap Agent analyzes legacy ETL and CSV context
-   - Generates initial Python transformation code
-   - Uses reasoning model with full context
-
-3. **Iterative Refinement**
-   Choose the appropriate method based on issues:
-   - **Direct Comparison**: Use terminal diff for simple mismatches
-   - **Row Analysis**: Use Rowlevel Analyzer Agent when row mappings are complex
-   - **Logic Refinement**: Use Code Refinement Agent when legacy ETL knowledge is needed
-
 ## Configuration Options
 | Environment Variable | Description | Default |
 |---------------------|-------------|----------|
