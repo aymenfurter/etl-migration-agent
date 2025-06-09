@@ -35,7 +35,7 @@ ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub
 
 
 ### Migration Workflow
-```mermaidAdd commentMore actions
+```mermaid
 graph TD
     A[Legacy ETL Code + CSV Files] --> B[Order Consistency Agent]
     B -->|Reordered Files| C[Code Bootstrap Agent]
