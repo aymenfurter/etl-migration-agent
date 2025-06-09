@@ -10,6 +10,8 @@
 ## Overview
 ETL Migration Agent is a Model Context Protocol (MCP) server that extends GitHub Copilot with specialized tools for migrating legacy ETL code to Python. It provides a suite of AI-powered tools that work together to analyze, convert, and validate ETL transformations.
 
+**Sample Output**: See [`test_data/transformation_script.py`](test_data/transformation_script.py) for an example of generated Python code that migrates legacy SQL ETL logic to pandas operations.
+
 ## Architecture
 
 ### Core Services
